@@ -1,4 +1,4 @@
-<%@ Page Title="Playground" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Playground.aspx.cs" Inherits="AngleSharp.Demo.Playground" %>
+<%@ Page Title="Playground" Language="C#" Async="true" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Playground.aspx.cs" Inherits="AngleSharp.Demo.Playground" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
