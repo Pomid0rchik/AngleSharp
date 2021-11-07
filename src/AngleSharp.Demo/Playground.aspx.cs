@@ -35,6 +35,7 @@ namespace AngleSharp.Demo
             //Console.WriteLine(document.DocumentElement.ToHtml(formatter));
             Context.Response.Cookies.Add(new HttpCookie("Testing", document.DocumentElement.ToHtml(formatter)));
             Context.Response.Write(document.DocumentElement.ToHtml(formatter));
+            
         }
 
         public class MyFormatter : IMarkupFormatter

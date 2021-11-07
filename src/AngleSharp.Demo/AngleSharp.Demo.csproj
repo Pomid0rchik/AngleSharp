@@ -44,15 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AngleSharp, Version=0.16.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
-      <HintPath>..\packages\AngleSharp.0.16.0\lib\net472\AngleSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="AngleSharp.Css, Version=0.16.2.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
-      <HintPath>..\packages\AngleSharp.Css.0.16.2\lib\net472\AngleSharp.Css.dll</HintPath>
-    </Reference>
-    <Reference Include="AngleSharp.Js, Version=0.15.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
-      <HintPath>..\packages\AngleSharp.Js.0.15.0\lib\net472\AngleSharp.Js.dll</HintPath>
-    </Reference>
     <Reference Include="jint, Version=2.10.4.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\jint.2.10.4\lib\net45\jint.dll</HintPath>
     </Reference>
@@ -252,6 +243,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AngleSharp\AngleSharp.Core.csproj">
+      <Project>{91f78c48-287e-41b5-9e49-44d6e1e31290}</Project>
+      <Name>AngleSharp.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

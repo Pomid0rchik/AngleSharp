@@ -1,8 +1,19 @@
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp;
-using AngleSharp.Js;
+using AngleSharp.Dom;
+using AngleSharp.Dom.Events;
+using AngleSharp.Text;
+using AngleSharp.Io;
+using AngleSharp.Html;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
+using AngleSharp.Xhtml;
 
 namespace AngleSharp.DemoConsole
 {
@@ -10,7 +21,16 @@ namespace AngleSharp.DemoConsole
     {
         static void Main(string[] args)
         {
-            EventScriptingExample();
+            var formatter = new MyFormatter();
+            var parser = new HtmlParser(new HtmlParserOptions
+            {
+                IsSupportingProcessingInstructions = false
+            });
+            var html = "<html><head></head><body><p><?xml version=\"1.0\" encoding=\"UTF - 8\" ?></p></body></html>";
+            var document = parser.ParseDocument(html);
+            //document = parser.ParseDocument(document.Prettify());
+            Console.WriteLine(document.DocumentElement.ToHtml());
+            //Console.WriteLine(document.QuerySelector("p").SourceReference?.Position.ToString());
         }
 
         static async Task SimpleScriptingSample()
@@ -131,5 +151,16 @@ namespace AngleSharp.DemoConsole
             e.Init("hello", false, false);
             document.Dispatch(e);
         }
+    }
+
+    class MyFormatter : IMarkupFormatter
+    {
+        public string CloseTag(IElement element, bool selfClosing) => HtmlMarkupFormatter.Instance.CloseTag(element, selfClosing);
+        public string Comment(IComment comment) => HtmlMarkupFormatter.Instance.Comment(comment);
+        public string Doctype(IDocumentType doctype) => HtmlMarkupFormatter.Instance.Doctype(doctype);
+        public string LiteralText(ICharacterData text) => HtmlMarkupFormatter.Instance.LiteralText(text);
+        public string OpenTag(IElement element, bool selfClosing) => HtmlMarkupFormatter.Instance.OpenTag(element, selfClosing);
+        public string Processing(IProcessingInstruction processing) => HtmlMarkupFormatter.Instance.Processing(processing);
+        public string Text(ICharacterData text) => HtmlMarkupFormatter.Instance.LiteralText(text);
     }
 }
